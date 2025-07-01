@@ -2,27 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
-/* @layer base {
-  .dark {
-    --background: 0 0% 100%;
-    --foreground: 224 71.4% 4.1%;
+/*
+  Tema utama diatur ke mode terang (putih) di :root.
+  Mode gelap (.dark) tetap tersedia jika Anda ingin menggunakannya nanti.
+*/
+@layer base {
+  /* Tema Terang (Default) */
+  :root {
+    --background: 0 0% 100%; /* Putih */
+    --foreground: 240 10% 3.9%; /* Hitam Pekat */
     --card: 0 0% 100%;
-    --card-foreground: 224 71.4% 4.1%;
+    --card-foreground: 240 10% 3.9%;
     --popover: 0 0% 100%;
-    --popover-foreground: 224 71.4% 4.1%;
-    --primary: 262.1 83.3% 57.8%;
-    --primary-foreground: 210 20% 98%;
-    --secondary: 220 14.3% 95.9%;
-    --secondary-foreground: 220.9 39.3% 11%;
-    --muted: 220 14.3% 95.9%;
-    --muted-foreground: 220 8.9% 46.1%;
-    --accent: 220 14.3% 95.9%;
-    --accent-foreground: 220.9 39.3% 11%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 262 83% 58%;
+    --primary-foreground: 0 0% 98%; /* Putih untuk kontras pada latar primer */
+    --primary-light: 262 84% 66%;
+    --primary-light-foreground: 262 83% 75%;
+    --secondary: 240 4.8% 95.9%; /* Abu-abu terang */
+    --secondary-foreground: 240 5.9% 10%; /* Hitam */
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%; /* Abu-abu sedang */
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 20% 98%;
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 262.1 83.3% 57.8%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%; /* Abu-abu sangat terang */
+    --input: 240 5.9% 90%;
+    --ring: 262 83% 58%;
     --radius: 0.5rem;
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
@@ -31,65 +38,8 @@
     --chart-5: 27 87% 67%;
   }
 
-  :root {
-    --background: 224 71.4% 4.1%;
-    --foreground: 210 20% 98%;
-    --card: 224 71.4% 4.1%;
-    --card-foreground: 210 20% 98%;
-    --popover: 224 71.4% 4.1%;
-    --popover-foreground: 210 20% 98%;
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 263.4 70% 50.4%;
-    --primary-foreground: 210 20% 98%;
-    --secondary: 215 27.9% 16.9%;
-    --secondary-foreground: 210 20% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 215 27.9% 16.9%;
-    --accent-foreground: 210 20% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-  }
-} */
-
-@layer base {
+  /* Tema Gelap (Dark Mode) */
   .dark {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 252 56% 57%;
-    --primary-foreground: 0 0% 93%;
-    --secondary: 256 100% 95%;
-    --secondary-foreground: 249 43% 26%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 252 56% 57%;
-    --radius: 0.75rem;
-  }
-
-  :root {
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
     --card: 240 10% 3.9%;
@@ -112,19 +62,6 @@
     --input: 240 3.7% 15.9%;
     --ring: 262 83% 58%;
     --radius: 0.5rem;
-  }
-}
-
-@layer base {
-  :root {
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-  }
-
-  .dark {
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
@@ -134,12 +71,8 @@
 }
 
 ::selection {
-  background-color: #474747;
-  color: #fff;
-}
-
-::-webkit-scrollbar {
-  /* display: none; */
+  background-color: #d4d4d8; /* Warna seleksi abu-abu terang */
+  color: #18181b; /* Warna teks seleksi hitam */
 }
 
 ::-webkit-scrollbar-thumb {
@@ -184,18 +117,19 @@ img {
   transition-property: height;
 }
 
+/* Tombol telah disesuaikan untuk tema terang */
 .btn-primary {
   z-index: 20;
-  /* background-image: linear-gradient(to right, hsl(var(--primary)), #9333ea); */
-  color: #fff;
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground)); /* Menggunakan variabel untuk warna teks */
   text-align: center;
   background-image: radial-gradient(circle farthest-side at 30% 0, rgba(255, 255, 255, .12), transparent);
   box-shadow: inset 1px 1px 2px rgba(255, 255, 255, .24), 0 1px 3px hsl(var(--primary)/0.24), 0 2px 6px hsl(var(--primary)/0.24), 0 4px 8px rgba(96, 10, 255, 0.12), 0 16px 32px -8px hsl(var(--primary)/0.48)
 }
 
 .btn-primary:hover {
-  background-color: #7c3aed;
-  color: #fff;
+  background-color: hsl(var(--primary-light));
+  color: hsl(var(--primary-foreground));
   transform: scale(1.05) translateY(-4px);
   box-shadow: inset 0 0 rgba(255, 255, 255, 0.24),
     0 1px 3px rgba(124, 58, 237, 0.24),
@@ -205,7 +139,7 @@ img {
 }
 
 .btn-primary:active {
-  background-color: #7c3aed;
+  background-color: hsl(var(--primary-light));
   transform: scale(1) translate(0);
   box-shadow: inset 0 0 rgba(255, 255, 255, 0.24),
     0 1px 3px rgba(124, 58, 237, 0.48),
@@ -216,38 +150,32 @@ img {
 
 .btn-secondary {
   z-index: 20;
-  background-color: hsl(var(--background)/0.04);
-  color: #fff;
+  background-color: hsl(var(--secondary));
+  color: hsl(var(--secondary-foreground)); /* Menggunakan variabel untuk warna teks */
   text-align: center;
-  background-image: radial-gradient(circle farthest-side at 35% -50%, rgba(255, 255, 255, .08), rgba(255, 255, 255, 0));
-  box-shadow: 0 8px 40px -20px rgba(255, 255, 255, .2),
-    inset 1px 1px rgba(255, 255, 255, .08),
-    inset 0 0 0 1px rgba(255, 255, 255, .06);
+  border: 1px solid hsl(var(--border));
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .btn-secondary:hover {
-  background-color: hsl(var(--background)/0.08);
-  color: #fff;
+  background-color: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
   transform: scale(1.05) translateY(-4px);
-  box-shadow: 0 8px 40px -20px rgba(255, 255, 255, .32),
-    inset 1px 1px rgba(255, 255, 255, .08),
-    inset 0 0 0 1px rgba(255, 255, 255, .1);
+  box-shadow: 0 4px 12px -4px rgba(0, 0, 0, 0.1);
 }
 
 .btn-secondary:active {
-  background-color: hsl(var(--background)/0.08);
   transform: scale(1) translateY(0);
-  box-shadow: 0 8px 40px -20px rgba(255, 255, 255, .32),
-    inset 1px 1px rgba(255, 255, 255, .08),
-    inset 0 0 0 1px rgba(255, 255, 255, .1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
+
 
 .badge {
   box-shadow: 0 0 0 1px hsl(var(--primary));
 }
 
 .heading {
-  @apply bg-gradient-to-b from-foreground to-foreground/60 bg-clip-text text-transparent;
+  @apply bg-gradient-to-b from-foreground to-foreground/80 bg-clip-text text-transparent; /* Sedikit disesuaikan untuk keterbacaan */
 }
 
 .bento-card {
@@ -260,6 +188,8 @@ img {
   border-radius: 0.75rem;
   position: relative;
   z-index: 50;
+  background-color: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
 }
 
 @media screen and (min-width: 768px) {
@@ -275,23 +205,32 @@ img {
   position: absolute;
   inset: 0;
   z-index: 10;
-  background: radial-gradient(200px circle at var(--mouse-x) var(--mouse-y), hsl(var(--foreground)), transparent);
+  /* Spotlight disesuaikan untuk tema terang */
+  background: radial-gradient(200px circle at var(--mouse-x) var(--mouse-y), hsl(var(--foreground)/0.05), transparent);
   transition: background 0.3s ease;
 }
 
 .group:hover .spotlight::after {
-  border-color: #fff;
+  border-color: hsl(var(--foreground));
 }
 
+/* Card dengan efek spotlight disesuaikan untuk tema terang */
 :root {
-  --content-background: #100F1B;
+  --content-background: hsl(var(--background));
   --spot-light-size: 800px;
+  --spot-light-color: rgba(18, 18, 18, 0.08); /* Warna sorotan lebih gelap */
+  --card-border-color: rgba(0, 0, 0, 0.2); /* Warna border lebih gelap */
+}
+
+.dark {
+  --content-background: #100F1B;
   --spot-light-color: rgba(139, 92, 246, 0.15);
   --card-border-color: rgba(255, 255, 255, 0.4);
 }
 
+
 .card {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(0, 0, 0, 0.05); /* Latar belakang semi-transparan yang lebih gelap */
   height: 100%;
   width: 100%;
   position: relative;
@@ -315,14 +254,12 @@ img {
   opacity: 0;
 }
 
-/* spotlight */
 .card:after {
   background: radial-gradient(var(--spot-light-size) circle at var(--pos-x) var(--pos-y),
       var(--spot-light-color),
       transparent 40%);
 }
 
-/* card's border */
 .card:before {
   background: radial-gradient(calc(var(--spot-light-size) / 2) circle at var(--pos-x) var(--pos-y),
       var(--card-border-color),
@@ -335,18 +272,18 @@ img {
 }
 
 .pricing {
-  background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 24, 51, .6), rgba(25, 8, 43, .3));
+  /* Gradient disesuaikan untuk latar belakang terang */
+  background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(220, 235, 255, .6), rgba(255, 255, 255, 0));
 }
 
 .footer::before {
-  background: radial-gradient(50% 56400% at 50% 100%, rgba(40, 34, 57, 0.2) 0%, rgba(169, 163, 194, 0) 100%);
+  background: radial-gradient(50% 150% at 50% 100%, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
   bottom: 0;
   content: "";
   height: 1px;
   left: 0;
   position: absolute;
   width: 100%;
-  color: rgb(23, 23, 23);
 }
 
 .th {
@@ -355,4 +292,4 @@ img {
 
 .gradient {
   background: conic-gradient(from 230.29deg at 51.63% 52.16%, rgb(36, 0, 255) 0deg, rgb(0, 135, 255) 67.5deg, rgb(108, 39, 157) 198.75deg, rgb(24, 38, 163) 251.25deg, rgb(54, 103, 196) 301.88deg, rgb(105, 30, 255) 360deg);
-                                                                             }
+}
