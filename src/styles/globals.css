@@ -3,34 +3,50 @@
 @tailwind utilities;
 
 /*
-  Tema utama diatur ke mode terang (putih) di :root.
-  Mode gelap (.dark) tetap tersedia jika Anda ingin menggunakannya nanti.
+  ==========================================
+  Definisi Variabel Warna Tema (THEME VARIABLES)
+  ==========================================
 */
 @layer base {
-  /* Tema Terang (Default) */
+  /* 🎨 TEMA TERANG (DEFAULT) */
   :root {
     --background: 0 0% 100%; /* Putih */
     --foreground: 240 10% 3.9%; /* Hitam Pekat */
+    
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
+    
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
+    
     --primary: 262 83% 58%;
     --primary-foreground: 0 0% 98%; /* Putih untuk kontras pada latar primer */
     --primary-light: 262 84% 66%;
     --primary-light-foreground: 262 83% 75%;
+    
     --secondary: 240 4.8% 95.9%; /* Abu-abu terang */
     --secondary-foreground: 240 5.9% 10%; /* Hitam */
+    
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%; /* Abu-abu sedang */
+    
     --accent: 240 4.8% 95.9%;
     --accent-foreground: 240 5.9% 10%;
+    
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
+    
     --border: 240 5.9% 90%; /* Abu-abu sangat terang */
     --input: 240 5.9% 90%;
     --ring: 262 83% 58%;
+    
     --radius: 0.5rem;
+
+    /* Variabel untuk efek dan chart */
+    --content-background: hsl(var(--background));
+    --spot-light-size: 800px;
+    --spot-light-color: rgba(18, 18, 18, 0.08);
+    --card-border-color: rgba(0, 0, 0, 0.2);
     --chart-1: 12 76% 61%;
     --chart-2: 173 58% 39%;
     --chart-3: 197 37% 24%;
@@ -38,7 +54,7 @@
     --chart-5: 27 87% 67%;
   }
 
-  /* Tema Gelap (Dark Mode) */
+  /* 🌙 TEMA GELAP (DARK MODE) */
   .dark {
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
@@ -56,12 +72,16 @@
     --muted-foreground: 240 5% 64.9%;
     --accent: 240 3.7% 15.9%;
     --accent-foreground: 0 0% 98%;
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 262 83% 58%;
-    --radius: 0.5rem;
+    
+    /* Variabel untuk efek dan chart */
+    --content-background: #100F1B;
+    --spot-light-color: rgba(139, 92, 246, 0.15);
+    --card-border-color: rgba(255, 255, 255, 0.4);
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
@@ -70,226 +90,155 @@
   }
 }
 
-::selection {
-  background-color: #d4d4d8; /* Warna seleksi abu-abu terang */
-  color: #18181b; /* Warna teks seleksi hitam */
-}
-
-::-webkit-scrollbar-thumb {
-  background: hsl(var(--foreground)/0.1);
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: inherit;
-}
-
-img {
-  user-select: none;
-  pointer-events: none;
-}
-
-.header {
-  --clip: inset(0 0 calc(100% - 48px + 8px) 0 round 16px);
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-  isolation: isolate;
-  overflow: hidden;
-  margin-inline: auto;
-  transform: translateX(calc(-1 * 5px / 2));
-  transition: .24s var(--ease-out-quad);
-  transition-property: background, -webkit-clip-path;
-  transition-property: clip-path, background;
-  transition-property: clip-path, background, -webkit-clip-path;
-}
-
-.headyer::before {
-  content: "";
-  position: absolute;
-  pointer-events: none;
-  inset: 0;
-  border: 1px solid hsl(var(--border));
-  border-radius: inherit;
-  height: calc(64px - 16px);
-  will-change: height;
-  transition: inherit;
-  transition-property: height;
-}
-
-/* Tombol telah disesuaikan untuk tema terang */
-.btn-primary {
-  z-index: 20;
-  background-color: hsl(var(--primary));
-  color: hsl(var(--primary-foreground)); /* Menggunakan variabel untuk warna teks */
-  text-align: center;
-  background-image: radial-gradient(circle farthest-side at 30% 0, rgba(255, 255, 255, .12), transparent);
-  box-shadow: inset 1px 1px 2px rgba(255, 255, 255, .24), 0 1px 3px hsl(var(--primary)/0.24), 0 2px 6px hsl(var(--primary)/0.24), 0 4px 8px rgba(96, 10, 255, 0.12), 0 16px 32px -8px hsl(var(--primary)/0.48)
-}
-
-.btn-primary:hover {
-  background-color: hsl(var(--primary-light));
-  color: hsl(var(--primary-foreground));
-  transform: scale(1.05) translateY(-4px);
-  box-shadow: inset 0 0 rgba(255, 255, 255, 0.24),
-    0 1px 3px rgba(124, 58, 237, 0.24),
-    0 2px 6px rgba(124, 58, 237, 0.24),
-    0 4px 8px rgba(124, 58, 237, 0.12),
-    0 20px 40px -8px rgba(124, 58, 237, 0.64);
-}
-
-.btn-primary:active {
-  background-color: hsl(var(--primary-light));
-  transform: scale(1) translate(0);
-  box-shadow: inset 0 0 rgba(255, 255, 255, 0.24),
-    0 1px 3px rgba(124, 58, 237, 0.48),
-    0 2px 6px rgba(124, 58, 237, 0.48),
-    0 4px 8px rgba(124, 58, 237, 0.48),
-    0 4px 12px -8px rgba(124, 58, 237, 1);
-}
-
-.btn-secondary {
-  z-index: 20;
-  background-color: hsl(var(--secondary));
-  color: hsl(var(--secondary-foreground)); /* Menggunakan variabel untuk warna teks */
-  text-align: center;
-  border: 1px solid hsl(var(--border));
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-}
-
-.btn-secondary:hover {
-  background-color: hsl(var(--accent));
-  color: hsl(var(--accent-foreground));
-  transform: scale(1.05) translateY(-4px);
-  box-shadow: 0 4px 12px -4px rgba(0, 0, 0, 0.1);
-}
-
-.btn-secondary:active {
-  transform: scale(1) translateY(0);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-}
-
-
-.badge {
-  box-shadow: 0 0 0 1px hsl(var(--primary));
-}
-
-.heading {
-  @apply bg-gradient-to-b from-foreground to-foreground/80 bg-clip-text text-transparent; /* Sedikit disesuaikan untuk keterbacaan */
-}
-
-.bento-card {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 1rem;
-  border-radius: 0.75rem;
-  position: relative;
-  z-index: 50;
-  background-color: hsl(var(--card));
-  border: 1px solid hsl(var(--border));
-}
-
-@media screen and (min-width: 768px) {
-  .bento-card {
-    padding: 1.5rem;
+/*
+  ==========================================
+  GAYA DASAR & KOMPONEN KUSTOM (BASE & COMPONENTS)
+  ==========================================
+*/
+@layer components {
+  /* Gaya Global */
+  ::selection {
+    background-color: hsl(var(--primary) / 0.4);
+    color: hsl(var(--primary-foreground));
   }
-}
 
-.spotlight::after {
-  content: "";
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  inset: 0;
-  z-index: 10;
-  /* Spotlight disesuaikan untuk tema terang */
-  background: radial-gradient(200px circle at var(--mouse-x) var(--mouse-y), hsl(var(--foreground)/0.05), transparent);
-  transition: background 0.3s ease;
-}
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--foreground) / 0.1);
+    border-radius: 10px;
+  }
 
-.group:hover .spotlight::after {
-  border-color: hsl(var(--foreground));
-}
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
 
-/* Card dengan efek spotlight disesuaikan untuk tema terang */
-:root {
-  --content-background: hsl(var(--background));
-  --spot-light-size: 800px;
-  --spot-light-color: rgba(18, 18, 18, 0.08); /* Warna sorotan lebih gelap */
-  --card-border-color: rgba(0, 0, 0, 0.2); /* Warna border lebih gelap */
-}
+  img {
+    user-select: none;
+    pointer-events: none;
+  }
+  
+  /* Heading dengan gradien */
+  .heading {
+    @apply bg-gradient-to-b from-foreground to-foreground/80 bg-clip-text text-transparent;
+  }
 
-.dark {
-  --content-background: #100F1B;
-  --spot-light-color: rgba(139, 92, 246, 0.15);
-  --card-border-color: rgba(255, 255, 255, 0.4);
-}
+  /* Tombol Primer */
+  .btn-primary {
+    z-index: 20;
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    text-align: center;
+    background-image: radial-gradient(circle farthest-side at 30% 0, rgba(255, 255, 255, .12), transparent);
+    box-shadow: inset 1px 1px 2px rgba(255, 255, 255, .24), 0 1px 3px hsl(var(--primary)/0.24), 0 2px 6px hsl(var(--primary)/0.24), 0 4px 8px rgba(96, 10, 255, 0.12), 0 16px 32px -8px hsl(var(--primary)/0.48)
+  }
 
+  .btn-primary:hover {
+    background-color: hsl(var(--primary-light));
+    transform: scale(1.05) translateY(-4px);
+    box-shadow: inset 0 0 rgba(255, 255, 255, 0.24),
+      0 1px 3px rgba(124, 58, 237, 0.24),
+      0 2px 6px rgba(124, 58, 237, 0.24),
+      0 4px 8px rgba(124, 58, 237, 0.12),
+      0 20px 40px -8px rgba(124, 58, 237, 0.64);
+  }
 
-.card {
-  background-color: rgba(0, 0, 0, 0.05); /* Latar belakang semi-transparan yang lebih gelap */
-  height: 100%;
-  width: 100%;
-  position: relative;
-}
+  .btn-primary:active {
+    transform: scale(1) translateY(0);
+    box-shadow: inset 0 0 rgba(255, 255, 255, 0.24),
+      0 1px 3px rgba(124, 58, 237, 0.48),
+      0 2px 6px rgba(124, 58, 237, 0.48),
+      0 4px 8px rgba(124, 58, 237, 0.48),
+      0 4px 12px -8px rgba(124, 58, 237, 1);
+  }
 
-.content {
-  background: var(--content-background);
-  height: calc(100% - 2px);
-  width: calc(100% - 2px);
-  transform: translate(1px, 1px);
-  border-radius: inherit;
-}
+  /* Tombol Sekunder */
+  .btn-secondary {
+    z-index: 20;
+    background-color: hsl(var(--secondary));
+    color: hsl(var(--secondary-foreground));
+    text-align: center;
+    border: 1px solid hsl(var(--border));
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
 
-.card:before,
-.card:after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  transition: opacity 500ms cubic-bezier(0.075, 0.82, 0.165, 1);
-  border-radius: inherit;
-  opacity: 0;
-}
+  .btn-secondary:hover {
+    background-color: hsl(var(--accent));
+    transform: scale(1.05) translateY(-4px);
+    box-shadow: 0 4px 12px -4px rgba(0, 0, 0, 0.1);
+  }
 
-.card:after {
-  background: radial-gradient(var(--spot-light-size) circle at var(--pos-x) var(--pos-y),
-      var(--spot-light-color),
-      transparent 40%);
-}
+  .btn-secondary:active {
+    transform: scale(1) translateY(0);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
 
-.card:before {
-  background: radial-gradient(calc(var(--spot-light-size) / 2) circle at var(--pos-x) var(--pos-y),
-      var(--card-border-color),
-      transparent 40%);
-}
+  .badge {
+    box-shadow: 0 0 0 1px hsl(var(--primary));
+  }
 
-.card:hover:after,
-.card:hover:before {
-  opacity: 1;
-}
+  /* Kartu Bento */
+  .bento-card {
+    @apply w-full h-full flex flex-col items-start p-4 md:p-6 rounded-lg relative z-50;
+    background-color: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+  }
 
-.pricing {
-  /* Gradient disesuaikan untuk latar belakang terang */
-  background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(220, 235, 255, .6), rgba(255, 255, 255, 0));
-}
+  /* Efek Spotlight pada Kartu */
+  .spotlight::after {
+    content: "";
+    @apply h-full w-full absolute inset-0 z-10 transition-colors duration-300 ease-in-out;
+    background: radial-gradient(200px circle at var(--mouse-x) var(--mouse-y), hsl(var(--foreground)/0.05), transparent);
+  }
+  
+  /* Kartu dengan efek sorotan (luar) */
+  .card {
+    background-color: hsl(var(--foreground) / 0.05);
+    @apply h-full w-full relative;
+  }
 
-.footer::before {
-  background: radial-gradient(50% 150% at 50% 100%, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0) 100%);
-  bottom: 0;
-  content: "";
-  height: 1px;
-  left: 0;
-  position: absolute;
-  width: 100%;
-}
+  .card .content {
+    background: var(--content-background);
+    height: calc(100% - 2px);
+    width: calc(100% - 2px);
+    transform: translate(1px, 1px);
+    border-radius: inherit;
+  }
 
-.th {
-  transition: height 0.3s ease;
-}
+  .card:before,
+  .card:after {
+    content: '';
+    @apply absolute inset-0 rounded-[inherit] opacity-0 transition-opacity duration-500;
+  }
 
-.gradient {
-  background: conic-gradient(from 230.29deg at 51.63% 52.16%, rgb(36, 0, 255) 0deg, rgb(0, 135, 255) 67.5deg, rgb(108, 39, 157) 198.75deg, rgb(24, 38, 163) 251.25deg, rgb(54, 103, 196) 301.88deg, rgb(105, 30, 255) 360deg);
+  .card:after { /* Spotlight color */
+    background: radial-gradient(var(--spot-light-size) circle at var(--pos-x) var(--pos-y),
+        var(--spot-light-color),
+        transparent 40%);
+  }
+
+  .card:before { /* Spotlight border */
+    background: radial-gradient(calc(var(--spot-light-size) / 2) circle at var(--pos-x) var(--pos-y),
+        var(--card-border-color),
+        transparent 40%);
+  }
+
+  .card:hover:after,
+  .card:hover:before {
+    opacity: 1;
+  }
+
+  /* Dekorasi Latar Belakang */
+  .pricing {
+    background: radial-gradient(ellipse 80% 50% at 50% -20%, hsl(var(--secondary)), transparent);
+  }
+
+  .footer::before {
+    content: "";
+    @apply absolute bottom-0 left-0 w-full h-px;
+    background: radial-gradient(50% 150% at 50% 100%, hsl(var(--border)) 0%, transparent 100%);
+  }
+  
+  /* Gradien Kustom */
+  .gradient {
+    background: conic-gradient(from 230.29deg at 51.63% 52.16%, rgb(36, 0, 255) 0deg, rgb(0, 135, 255) 67.5deg, rgb(108, 39, 157) 198.75deg, rgb(24, 38, 163) 251.25deg, rgb(54, 103, 196) 301.88deg, rgb(105, 30, 255) 360deg);
+  }
 }
