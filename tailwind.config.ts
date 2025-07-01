@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
-import colors from "tailwindcss/colors"; // Impor colors meskipun tidak langsung dipakai, ini praktik yang baik
+import colors from "tailwindcss/colors";
+// @ts-ignore 
 import flattenColorPalette from "tailwindcss/lib/util/flattenColorPalette";
 import svgToDataUri from "mini-svg-data-uri";
 
@@ -36,7 +37,6 @@ const config = {
       },
     },
     extend: {
-      // ✅ Konsisten menggunakan HSL untuk semua definisi warna
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -47,7 +47,7 @@ const config = {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
         },
-        primaryLight: { // Nama ini lebih deskriptif
+        primaryLight: {
           DEFAULT: "hsl(var(--primary-light))",
           foreground: "hsl(var(--primary-light-foreground))",
         },
@@ -81,10 +81,9 @@ const config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
-      // ✅ Penggunaan variabel CSS untuk font adalah praktik yang sangat baik
       fontFamily: {
-        "heading": ["var(--font-satoshi)", "sans-serif"], // Menambahkan fallback font
-        "default": ["var(--font-inter)", "sans-serif"],    // Menambahkan fallback font
+        "heading": ["var(--font-satoshi)", "sans-serif"],
+        "default": ["var(--font-inter)", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {
@@ -115,7 +114,7 @@ const config = {
           "0%": { opacity: "0", transform: "translate(-72%, -62%) scale(0.5)" },
           "100%": { opacity: "1", transform: "translate(-50%,-40%) scale(1)" },
         },
-        loading: { // Penamaan lebih konsisten
+        loading: {
           "to": { transform: "rotate(360deg)" },
         },
       },
@@ -135,10 +134,9 @@ const config = {
     },
   },
   plugins: [
-    addVariablesForColors, // Plugin kustom Anda
+    addVariablesForColors,
     require("tailwindcss-animate"),
     require("tailwind-scrollbar-hide"),
-    // Plugin untuk background pattern (grid, dot)
     function ({ matchUtilities, theme }: any) {
       matchUtilities(
         {
@@ -165,3 +163,4 @@ const config = {
 } satisfies Config;
 
 export default config;
+
