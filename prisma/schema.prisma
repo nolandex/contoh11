@@ -1,0 +1,28 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+enum Role {
+  user
+  assistant
+}
+
+model User {
+  id           String  @id @default(cuid()) @map("_id")
+  // clerkId      String  @unique   // <-- REMOVE THIS LINE
+  email        String  @unique
+  name         String?
+  avatar       String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
