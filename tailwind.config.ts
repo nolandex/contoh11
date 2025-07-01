@@ -1,11 +1,22 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
+import colors from "tailwindcss/colors"; // Impor colors meskipun tidak langsung dipakai, ini praktik yang baik
+import flattenColorPalette from "tailwindcss/lib/util/flattenColorPalette";
+import svgToDataUri from "mini-svg-data-uri";
 
-const svgToDataUri = require("mini-svg-data-uri");
+/**
+ * Plugin untuk menambahkan semua warna tema sebagai variabel CSS.
+ * Ini memungkinkan penggunaan warna di tempat yang tidak didukung langsung oleh Tailwind, seperti dalam komponen JS.
+ */
+function addVariablesForColors({ addBase, theme }: any) {
+  const allColors = flattenColorPalette(theme("colors"));
+  const newVars = Object.fromEntries(
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+  );
 
-const colors = require("tailwindcss/colors");
-const {
-  default: flattenColorPalette,
-} = require("tailwindcss/lib/util/flattenColorPalette");
+  addBase({
+    ":root": newVars,
+  });
+}
 
 const config = {
   darkMode: ["class"],
@@ -25,6 +36,7 @@ const config = {
       },
     },
     extend: {
+      // ✅ Konsisten menggunakan HSL untuk semua definisi warna
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -35,7 +47,7 @@ const config = {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
         },
-        primaryLight: {
+        primaryLight: { // Nama ini lebih deskriptif
           DEFAULT: "hsl(var(--primary-light))",
           foreground: "hsl(var(--primary-light-foreground))",
         },
@@ -69,9 +81,10 @@ const config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      // ✅ Penggunaan variabel CSS untuk font adalah praktik yang sangat baik
       fontFamily: {
-        "heading": ["var(--font-satoshi)"],
-        "default": ["var(--font-inter)"],
+        "heading": ["var(--font-satoshi)", "sans-serif"], // Menambahkan fallback font
+        "default": ["var(--font-inter)", "sans-serif"],    // Menambahkan fallback font
       },
       keyframes: {
         "accordion-down": {
@@ -87,26 +100,24 @@ const config = {
           "100%": { transform: "translateY(0)" },
         },
         "background-shine": {
-          "from": { "backgroundPosition": "0 0" },
-          "to": { "backgroundPosition": "-200% 0" }
+          "from": { backgroundPosition: "0 0" },
+          "to": { backgroundPosition: "-200% 0" },
         },
         "marquee": {
           "from": { transform: "translateX(0)" },
           "to": { transform: "translateX(calc(-100% - var(--gap)))" },
         },
         "ripple": {
-          "0%, 100%": { transform: "translate(-50%, -50%) scale(1)", },
-          "50%": { transform: "translate(-50%, -50%) scale(0.9)", },
+          "0%, 100%": { transform: "translate(-50%, -50%) scale(1)" },
+          "50%": { transform: "translate(-50%, -50%) scale(0.9)" },
         },
         spotlight: {
-          "0%": { opacity: "0", transform: "translate(-72%, -62%) scale(0.5)", },
-          "100%": { opacity: "1", transform: "translate(-50%,-40%) scale(1)", },
+          "0%": { opacity: "0", transform: "translate(-72%, -62%) scale(0.5)" },
+          "100%": { opacity: "1", transform: "translate(-50%,-40%) scale(1)" },
         },
-        "loading": {
-          "to": {
-            transform: "rotate(360deg)"
-          },
-        }
+        loading: { // Penamaan lebih konsisten
+          "to": { transform: "rotate(360deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -114,8 +125,8 @@ const config = {
         "grid": "grid 15s linear infinite",
         "background-shine": "background-shine 2s linear infinite",
         "marquee": "marquee var(--duration) linear infinite",
-        "ripple": "ripple var(--duration,2s) ease calc(var(--i, 0)*.2s) infinite",
-        "spotlight": "spotlight 2s ease .75s 1 forwards",
+        "ripple": "ripple var(--duration, 2s) ease calc(var(--i, 0) * 0.2s) infinite",
+        "spotlight": "spotlight 2s ease 0.75s 1 forwards",
         "loading": "loading 0.6s linear infinite",
       },
       spacing: {
@@ -124,9 +135,10 @@ const config = {
     },
   },
   plugins: [
-    addVariablesForColors,
+    addVariablesForColors, // Plugin kustom Anda
     require("tailwindcss-animate"),
     require("tailwind-scrollbar-hide"),
+    // Plugin untuk background pattern (grid, dot)
     function ({ matchUtilities, theme }: any) {
       matchUtilities(
         {
@@ -152,15 +164,4 @@ const config = {
   ],
 } satisfies Config;
 
-function addVariablesForColors({ addBase, theme }: any) {
-  let allColors = flattenColorPalette(theme("colors"));
-  let newVars = Object.fromEntries(
-    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
-  );
-
-  addBase({
-    ":root": newVars,
-  });
-};
-
-export default config
+export default config;
